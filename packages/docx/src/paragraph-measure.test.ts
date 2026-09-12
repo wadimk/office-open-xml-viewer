@@ -238,16 +238,14 @@ describe('measureParagraph', () => {
       spaceBefore: 0,
       spaceAfter: 0,
       runs: [
-        { type: 'anchorHost', fontSize: 10, anchorOccurrenceId: 'occ-1' } as never,
+        { type: 'anchorHost', fontSize: 10 },
         { type: 'text', ...textRun('abc') },
       ],
     });
     const context = layoutContext({ spaceBeforePt: 0, spaceAfterPt: 0 });
 
-    expect(() => measureParagraphIntrinsicWidth(doc, context, 200, measurer, environment()))
-      .not.toThrow();
     expect(measureParagraphIntrinsicWidth(doc, context, 200, measurer, environment()))
-      .toBeGreaterThan(0);
+      .toBe(15);
   });
 
   it('includes paragraph indents, hanging numbering space, tabs, bidi, and inline resources', () => {
